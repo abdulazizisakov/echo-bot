@@ -2,28 +2,20 @@ import time
 
 import requests
 
+from bot.bot import Bot
+from bot.distpatcher import Dispatcher
+
 
 class Updater:
     def __init__(self, token: str) -> None:
-        self.token: str = token
-        self.last_update_id: int | None = None
-
-    def get_updates(self) -> list[dict]:
-        payload = {"offset": self.last_update_id}
-        response = requests.get(
-            f"https://api.telegram.org/bot{self.token}/getUpdates", params=payload
-        )
-        if response.status_code == 200:
-            data = response.json()
-            return data["result"]
-
-        return []
+        self.bot = Bot(token)
+        self.dispatcher = Dispatcher()
 
     def start_polling(self) -> None:
         while True:
-            for update in self.get_updates():
-                print(update["update_id"])
+            for update in self.bot.get_updates():
+                self.dispatcher.process_update(update)
 
-                self.last_update_id = update["update_id"] + 1
+                self.bot.last_update_id = update["update_id"] + 1
 
-            time.sleep(0.3)
+            time.sleep(0.5)
