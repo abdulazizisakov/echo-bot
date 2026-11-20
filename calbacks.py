@@ -31,3 +31,10 @@ def reply_document(update: dict, context: Context):
         update["message"]["chat"]["id"],
         update["message"]["document"]["file_id"],
     )
+
+
+def reply_voice(update: dict, context: Context):
+    context.bot.send_voice(
+        update["message"]["chat"]["id"],
+        update["message"]["voice"]["file_id"],
+    )

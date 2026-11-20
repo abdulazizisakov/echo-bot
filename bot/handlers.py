@@ -62,3 +62,14 @@ class DocumentHandler(BaseHandler):
             return True
         else:
             return False
+
+
+class VoiceHandler(BaseHandler):
+    def check_update(self, update: dict) -> bool:
+        message = update.get("message", {})
+        voice = message.get("voice")
+
+        if voice:
+            return True
+        else:
+            return False

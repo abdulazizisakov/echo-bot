@@ -57,7 +57,11 @@ class Bot:
         )
 
     def send_voice(self, chat_id: int, voice: str) -> None:
-        pass
+        
+        payload = {"chat_id": chat_id, "voice": voice}
+        response = requests.get(
+            f"https://api.telegram.org/bot{self.token}/sendVoice", params=payload
+        )
 
     def send_video(self, chat_id: int, video: str) -> None:
         pass
