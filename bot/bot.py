@@ -42,6 +42,7 @@ class Bot:
         payload = {"chat_id" : chat_id, "latitude" : lat, "longitude" : lon}
         response = requests.get(f"http://api.telegram.org/bot{self.token}/sendLocation", params=payload)
 
+
     def send_contact(self, chat_id: int, phone_number: str, first_name: str) -> None:
         payload = {"chat_id": chat_id, "phone_number": phone_number, "first_name": first_name}
         response = requests.get(
@@ -56,12 +57,14 @@ class Bot:
             f"https://api.telegram.org/bot{self.token}/sendDocument", params=payload
         )
 
+
     def send_voice(self, chat_id: int, voice: str) -> None:
         
         payload = {"chat_id": chat_id, "voice": voice}
         response = requests.get(
             f"https://api.telegram.org/bot{self.token}/sendVoice", params=payload
         )
+
 
     def send_video(self, chat_id: int, video: str) -> None:
        
@@ -70,5 +73,10 @@ class Bot:
             f"https://api.telegram.org/bot{self.token}/sendVideo", params=payload
         )
 
+
     def send_dice(self, chat_id: int, dice: str) -> None:
-        pass
+        
+        payload = {"chat_id": chat_id, "emoji": dice}
+        response = requests.get(
+            f"https://api.telegram.org/bot{self.token}/sendDice", params=payload
+        )

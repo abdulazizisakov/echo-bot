@@ -45,3 +45,10 @@ def reply_video(update: dict, context: Context):
         update["message"]["chat"]["id"],
         update["message"]["video"]["file_id"],
     )
+
+
+def reply_dice(update: dict, context: Context):
+    context.bot.send_dice(
+        update["message"]["chat"]["id"],
+        update["message"]["dice"]["emoji"],
+    )

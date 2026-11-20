@@ -84,3 +84,14 @@ class VideoHandler(BaseHandler):
             return True
         else:
             return False
+
+
+class DiceHandler(BaseHandler):
+    def check_update(self, update: dict) -> bool:
+        message = update.get("message", {})
+        dice = message.get("dice")
+
+        if dice:
+            return True
+        else:
+            return False
