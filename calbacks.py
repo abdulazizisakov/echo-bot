@@ -14,4 +14,9 @@ def reply_contact(update: dict, context: Context):
 
 
 def reply_location(update: dict, context: Context):
-    print("lcoation keldi")
+    context.bot.send_location(
+        update["message"]["chat"]["id"],
+        update["message"]["location"]["latitude"],
+        update["message"]["location"]["longitude"]
+
+    )
