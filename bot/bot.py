@@ -2,9 +2,12 @@ import requests
 
 
 class Bot:
+
+
     def __init__(self, token: str) -> None:
         self.token = token
         self.last_update_id: int | None = None
+
 
     def get_updates(self) -> list[dict]:
         payload = {"offset": self.last_update_id}
@@ -17,11 +20,13 @@ class Bot:
 
         return []
 
+
     def send_message(self, chat_id: int, text: str, reply_markup: list = []) -> None:
         payload = {"chat_id": chat_id, "text": text}
         response = requests.get(
             f"https://api.telegram.org/bot{self.token}/sendMessage", params=payload
         )
+
 
     def send_photo(self, chat_id: int, photo: str | list) -> None:
         payload = {
@@ -32,12 +37,17 @@ class Bot:
             f"https://api.telegram.org/bot{self.token}/sendPhoto", params=payload
         )
 
+
     def send_location(self, chat_id: int, lat: float, lon: float) -> None:
         payload = {"chat_id" : chat_id, "latitude" : lat, "longitude" : lon}
         response = requests.get(f"http://api.telegram.org/bot{self.token}/sendLocation", params=payload)
 
     def send_contact(self, chat_id: int, phone_number: str, first_name: str) -> None:
-        pass
+        payload = {"chat_id": chat_id, "phone_number": phone_number, "first_name": first_name}
+        response = requests.get(
+            f"https://api.telegram.org/bot{self.token}/sendContact", params=payload
+        )
+
 
     def send_document(self, chat_id: int, document: str) -> None:
         pass

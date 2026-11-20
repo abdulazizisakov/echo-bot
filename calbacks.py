@@ -10,7 +10,11 @@ def reply_photo(update: dict, context: Context):
 
 
 def reply_contact(update: dict, context: Context):
-    print("contact keldi")
+    context.bot.send_contact(
+        update["message"]["chat"]["id"],
+        update["message"]["contact"]["phone_number"],
+        update["message"]["contact"]["first_name"]
+    )
 
 
 def reply_location(update: dict, context: Context):
