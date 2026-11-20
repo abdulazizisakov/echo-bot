@@ -33,7 +33,8 @@ class Bot:
         )
 
     def send_location(self, chat_id: int, lat: float, lon: float) -> None:
-        pass
+        payload = {"chat_id" : chat_id, "latitude" : lat, "longitude" : lon}
+        response = requests.get(f"http://api.telegram.org/bot{self.token}/sendLocation", params=payload)
 
     def send_contact(self, chat_id: int, phone_number: str, first_name: str) -> None:
         pass
