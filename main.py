@@ -1,8 +1,8 @@
 from bot.updater import Updater
-from bot.handlers import TextHandler, PhotoHandler, ContactHandler, LocatioinHandler, DocumentHandler, VoiceHandler
+from bot.handlers import TextHandler, PhotoHandler, ContactHandler, LocatioinHandler, DocumentHandler, VoiceHandler, VideoHandler
 
 from settings import settings
-from calbacks import reply_text, reply_photo, reply_contact, reply_location, reply_document, reply_voice
+from calbacks import reply_text, reply_photo, reply_contact, reply_location, reply_document, reply_voice, reply_video
 
 
 def main() -> None:
@@ -14,6 +14,7 @@ def main() -> None:
     updater.dispatcher.add_handler(LocatioinHandler(reply_location))
     updater.dispatcher.add_handler(DocumentHandler(reply_document))
     updater.dispatcher.add_handler(VoiceHandler(reply_voice))
+    updater.dispatcher.add_handler(VideoHandler(reply_video))
 
     updater.start_polling()
 

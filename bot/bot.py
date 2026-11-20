@@ -64,7 +64,11 @@ class Bot:
         )
 
     def send_video(self, chat_id: int, video: str) -> None:
-        pass
+       
+        payload = {"chat_id": chat_id, "video": video}
+        response = requests.get(
+            f"https://api.telegram.org/bot{self.token}/sendVideo", params=payload
+        )
 
     def send_dice(self, chat_id: int, dice: str) -> None:
         pass

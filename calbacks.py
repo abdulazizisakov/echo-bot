@@ -38,3 +38,10 @@ def reply_voice(update: dict, context: Context):
         update["message"]["chat"]["id"],
         update["message"]["voice"]["file_id"],
     )
+
+
+def reply_video(update: dict, context: Context):
+    context.bot.send_video(
+        update["message"]["chat"]["id"],
+        update["message"]["video"]["file_id"],
+    )

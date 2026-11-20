@@ -73,3 +73,14 @@ class VoiceHandler(BaseHandler):
             return True
         else:
             return False
+
+
+class VideoHandler(BaseHandler):
+    def check_update(self, update: dict) -> bool:
+        message = update.get("message", {})
+        video = message.get("video")
+
+        if video:
+            return True
+        else:
+            return False
