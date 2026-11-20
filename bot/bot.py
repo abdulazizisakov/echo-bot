@@ -50,7 +50,11 @@ class Bot:
 
 
     def send_document(self, chat_id: int, document: str) -> None:
-        pass
+        
+        payload = {"chat_id": chat_id, "document": document}
+        response = requests.get(
+            f"https://api.telegram.org/bot{self.token}/sendDocument", params=payload
+        )
 
     def send_voice(self, chat_id: int, voice: str) -> None:
         pass

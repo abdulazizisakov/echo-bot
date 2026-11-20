@@ -24,3 +24,10 @@ def reply_location(update: dict, context: Context):
         update["message"]["location"]["longitude"]
 
     )
+
+
+def reply_document(update: dict, context: Context):
+    context.bot.send_document(
+        update["message"]["chat"]["id"],
+        update["message"]["document"]["file_id"],
+    )
